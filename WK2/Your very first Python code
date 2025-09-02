@@ -1,5 +1,23 @@
+# my First code
+A.
 print("All the world's a stage,") 
 print("And all the men and women merely players:") 
 print("They have their exits and their entrances;")
 print("And one man in his time plays many parts,")
 print("His acts being seven ages.")
+B.
+print("All the world's a stage, 
+And all the men and women merely players: 
+They have their exits and their entrances; 
+And one man in his time plays many parts,
+His acts being seven ages.")
+C.
+127.0.0.1
+D.
+When redirecting output to a file for logging fo fluh true.
+For most general printing tasks where immediate display is not critical for flush false
+E.
+print() output behaves like flush=True
+# the challenges i faced was making sure i had my parenthesis in the right spot.
+# I also had to make sure Quatations were in the right spot.
+# Other than that i didnt face to many challenges.
