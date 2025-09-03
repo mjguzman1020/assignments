@@ -1,1 +1,20 @@
+#User Input
+A.
+weight_kg = float(input("Enter weight in kilograms: "))
+weight_lbs = weight_kg * 2.2
+print(weight_lbs)
+print(5 + 2 - 2)
+B.
+netBalance = float(input("Enter the net balance: "))
+payment = float(input("Enter the payment amount: "))
+d1 = int(input("Enter the number of days in the billing cycle: "))
+d2 = int(input("Enter the number of days payment is made before the billing cycle ends: "))
+interestRatePerMonth = float(input("Enter the monthly interest rate in percentage: "))
+rate = interestRatePerMonth / 100
+averageDailyBalance = (netBalance * d1 - payment * d2) / d1
 
+interest = averageDailyBalance * interestRatePerMonth
+
+print("Average Daily Balance: ", averageDailyBalance)
+print("Interest for this billing cycle: ", interest)
+C.
