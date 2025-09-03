@@ -18,3 +18,31 @@ interest = averageDailyBalance * interestRatePerMonth
 print("Average Daily Balance: ", averageDailyBalance)
 print("Interest for this billing cycle: ", interest)
 C.
+def main():
+    # Input average speeds
+
+    x = float(input("Enter the average speed of Car A (mph, west): "))
+
+    y = float(input("Enter the average speed of Car B (mph, south): "))
+
+    # Input elapsed time
+
+    hours = int(input("Enter elapsed hours: "))
+
+    minutes = int(input("Enter elapsed minutes: "))
+
+    # Convert total time to hours
+
+    total_time = hours + minutes / 60.0
+
+    # Distance traveled by each car
+
+    distance_a = x * total_time
+
+    distance_b = y * total_time
+
+    # Distance between the two cars (Pythagorean theorem)
+
+    distance = math.sqrt(distance_a ** 2 + distance_b ** 2)
+
+    print(f"\nThe shortest distance between the two cars is {distance:.2f} miles.")
