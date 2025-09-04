@@ -1,1 +1,17 @@
+# Variables
+# Check the memory address of var1 by using the following statement Var1=10
+print(hex(id(var1))) 
+0x7ff8addb74c8
 
+# Check the memory address of var1 by using the following statement Var100
+0x7ff8ca5c8008
+
+You should see two distinct addresses for var1. Explain why there are two different addresses and what happened to the first one.
+NameError: name 'var1' is not defined. Did you mean: 'vars'? The first one was not defined so it had an error.
+the secont one had a number so the code worked.
+
+# Find out the memory addresses of each character in str1 and str2.
+str1 = "Hello"
+print(hex(id("Hello"[0]))) 0x7ff8b5026b30
+str2= "World"
+print(hex(id("World"[0]))) 0x7ff8b5026e00
