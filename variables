@@ -15,3 +15,8 @@ str1 = "Hello"
 print(hex(id("Hello"[0]))) 0x7ff8b5026b30
 str2= "World"
 print(hex(id("World"[0]))) 0x7ff8b5026e00
+
+print(hex(id(str1[0])), hex(id(str1[1])))  # where 0 is the first index and 1 is the second index
+# Use the same method as described above to find the addresses of additional characters and complete the table below.
+0x7ff8b5026b30
+0x7ff8b50270a0
