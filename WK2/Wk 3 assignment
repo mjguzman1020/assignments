@@ -1,1 +1,25 @@
+# Lowercase letters
+print("Lowercase letters:")
+for char_code in range(ord('a'), ord('z') + 1):
+    print(f"'{chr(char_code)}': {char_code}")
 
+# Uppercase letters
+print("\nUppercase letters:")
+for char_code in range(ord('A'), ord('Z') + 1):
+    print(f"'{chr(char_code)}': {char_code}")
+
+# Digits
+print("\nDigits:")
+for char_code in range(ord('0'), ord('9') + 1):
+    print(f"'{chr(char_code)}': {char_code}")
+
+# Common punctuation and symbols
+print("\nPunctuation and Symbols:")
+symbols = "!@#$%^&*()-_=+[{]}\\|;:'\",<.>/?`~ "
+for char in symbols:
+    print(f"'{char}': {ord(char)}")
+
+# Special characters (e.g., Tab, Newline)
+print("\nSpecial Characters:")
+print(f"'\\t' (Tab): {ord('\\t')}")
+print(f"'\\n' (Newline): {ord('\\n')}")
