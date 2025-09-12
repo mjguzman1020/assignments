@@ -1,1 +1,42 @@
+# 1. while loop
 
+
+# Python program to check if the input number is odd or even.
+# A number is even if division by 2 gives a remainder of 0.
+# If the remainder is 1, it is an odd number.
+
+num = int(input("Enter a number: "))
+if (num % 2) == 0:
+   print("{0} is Even".format(num))
+else:
+   print("{0} is Odd".format(num))
+
+
+def count_characters(text):
+    """
+    
+    """
+    letter_counts = {}
+    total_alphabets = 0
+    
+  
+        if 'a' <= char <= 'z':
+            total_alphabets += 1
+            
+          
+                if char in letter_counts:
+                    letter_counts[char] += 1
+                else:
+                    letter_counts[char] = 1
+                # The break statement is used to exit the inner while loop
+                break
+        else:
+            # Use continue to skip over non-alphabetic characters like spaces and punctuation
+            continue
+            
+   
+    print(f"Total number of alphabets: {total_alphabets}")
+    print("Total number of distinct alphabets are:")
+    
+   
+        print(f"  {letter} = {count}")
