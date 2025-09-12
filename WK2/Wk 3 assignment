@@ -1,3 +1,6 @@
+# Research and find the ASCII number of all the characters available on the keyboard using Python.
+1. Comparison operators
+
 # Lowercase letters
 print("Lowercase letters:")
 for char_code in range(ord('a'), ord('z') + 1):
@@ -23,3 +26,34 @@ for char in symbols:
 print("\nSpecial Characters:")
 print(f"'\\t' (Tab): {ord('\\t')}")
 print(f"'\\n' (Newline): {ord('\\n')}")
+
+2.Logical operators (and, or, not)
+
+3.
+
+4.# Decision statements
+
+# Read two numbers
+number1 = int(input("Enter the first number: "))
+number2 = int(input("Enter the second number: "))
+
+# Choose the larger number
+if (number1 > number2):
+    larger_number = number1
+else:
+    larger_number = number2
+
+# Print the result
+print("The larger number is:", larger_number)
+
+x = 10
+if x > 5:  # True
+    if x == 6:  # False
+        print("nested: x == 6")
+    elif x == 10:  # True
+        print("nested: x == 10")
+    else:
+        print("nested: else")
+else:
+    print("else")
+
