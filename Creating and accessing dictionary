@@ -1,0 +1,49 @@
+# Example dictionary with 10 elements
+```python
+my_dict = {
+    "A": 1,
+    "B": 2,
+    "C": 3,
+    "D": 4,
+    "E": 5,
+    "F": 6,
+    "G": 7,
+    "H": 8,
+    "I": 9,
+    "J": 10
+}
+```python
+print("Dictionary with 10 elements:", my_dict)
+```
+
+# Initial list of tuples
+a = [("a", 1), ("b", 2), ("c", 3), ("b", 5), ("d",), ("e", 6)]
+
+res = {}  # Final dictionary
+
+i = 0
+while i < len(a):
+    pair = a[i]
+
+    # Check if tuple has exactly 2 items (valid key-value pair)
+    if len(pair) != 2:
+        print("Invalid pair:", pair)
+        key = input("Enter a valid key: ")
+        value = input("Enter a valid value: ")
+        res[key] = value
+
+    else:
+        key, value = pair
+
+        # Check for key duplication
+        if key in res:
+            print("Duplicate key found:", key)
+            new_key = input("Enter a new key for value " + str(value) + ": ")
+            res[new_key] = value
+        else:
+            res[key] = value
+
+    i += 1
+```python
+print("Final dictionary:", res)
+```
