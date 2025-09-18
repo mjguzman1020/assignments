@@ -1,0 +1,129 @@
+1a) Take five inputs from a user and save it in a tuple called my_tuple
+# Taking five inputs from user
+my_tuple = tuple(input(f"Enter value {i+1}: ") for i in range(5))
+```python
+print("Tuple created:", my_tuple)
+```
+1b) How do you assign a single element in a tuple?
+
+👉 Trick question!
+You cannot directly assign a value to a single element in a tuple because tuples are immutable.
+
+Example (this will raise an error):
+
+my_tuple = (1, 2, 3)
+my_tuple[0] = 10   # ❌ Not allowed
+
+
+✅ Instead, you can convert the tuple to a list, modify it, then convert it back:
+
+my_tuple = (1, 2, 3)
+temp = list(my_tuple)
+temp[0] = 10
+my_tuple = tuple(temp)
+
+``python
+print(my_tuple)  # (10, 2, 3)
+```
+1c) Count the repeated integers in a tuple
+my_tuple = (1,2,3,4,3,2,1,2,3,5,4,3,2,1)
+
+# Using dictionary to count
+counts = {}
+for num in my_tuple:
+    counts[num] = counts.get(num, 0) + 1
+
+```python
+print("Counts of elements:", counts)
+```
+
+👉 Output will be:
+
+Counts of elements: {1: 3, 2: 4, 3: 4, 4: 2, 5: 1}
+
+1d) Show that my_tuple = my_tuple + my_tuple creates a different tuple
+my_tuple = (1,2,3,4,3,2,1,2,3,5,4,3,2,1)
+```python
+print("Original ID:", id(my_tuple))
+```
+my_tuple = my_tuple + my_tuple   # Concatenation creates a new tuple
+
+print("New ID after concatenation:", id(my_tuple))
+
+
+👉 Proof: id() shows different memory locations.
+So the new my_tuple is not the same object as the original.
+
+1e) Why are these operations illegal for a tuple?
+x = (1,2,3,4)
+x.append(1)      # ❌ Not allowed
+x[1] = "hello"   # ❌ Not allowed
+del x[2]         # ❌ Not allowed
+
+
+Explanation without Python:
+
+append(1) → Tuples do not support methods that change their size, since they are immutable.
+
+x[1] = "hello" → Assignment changes an element, which is not allowed for tuples.
+
+del x[2] → Deletion modifies the tuple structure, which is not possible because tuples are fixed in size and content after creation.
+
+Code Example
+x = (1, 2, 3, 4, 5)
+
+a, *b, c = x
+
+```
+print("a =", a)
+print("b =", b)
+print("c =", c)
+```
+Explanation
+
+a takes the first element → 1
+
+c takes the last element → 5
+
+*b collects everything in between into a list → [2, 3, 4]
+
+Output
+a = 1
+b = [2, 3, 4]
+c = 5
+
+# Memory management
+Both lists and tuples don’t hold the actual numbers directly — they hold references (addresses) to the integer objects in memory.
+
+The integers (100,200,300,400,500) are separate objects that live in memory.
+
+Python tries to reuse addresses of integers when possible:
+
+Small integers [-5 to 256] are cached and always reused.
+
+Larger integers (like 300, 400, 500) are usually created as new objects
+Comparing my_x (list) and my_y (tuple)
+Index	my_x (list values)	Address situation	my_y (tuple values)	Address situation
+0	100	Re-used (small int cache)	200	New object (not cached)
+1	200	Same address as my_y[0]	300	New object
+2	300	Same address as my_y[1]	400	New object
+3	400	Same address as my_y[2]	500	New object
+🔹 Step 3: Key observations
+
+Reused addresses
+
+Both my_x[1] and my_y[0] point to the same integer object 200.
+
+Similarly, my_x[2] and my_y[1] both point to 300.
+
+New addresses
+
+500 only exists in my_y, so it gets its own new address.
+
+List vs Tuple difference
+
+my_x is a mutable container → its slots can be reassigned to different addresses if we change elements.
+
+my_y is immutable → its slots (addresses) cannot change once created.
+
+
