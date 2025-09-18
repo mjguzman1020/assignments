@@ -1,0 +1,85 @@
+Conversion factor:
+1 kilometer per liter (kpl) ≈ 2.35215 miles per gallon (mpg).
+So:
+
+mpg = kpl * 2.35215
+
+kpl = mpg / 2.35215
+
+```Python
+def convert_units(conversion_type, *values):
+    """
+    Convert between kilometers per liter (kpl) and miles per gallon (mpg).
+    Allows multiple values as input arguments.
+    Includes validation for numeric inputs.
+    """
+    factor = 2.35215  # conversion factor: 1 kpl = 2.35215 mpg
+    results = []
+
+    for v in values:
+        try:
+            num = float(v)  # validate input as number
+            if conversion_type.lower() == "kpl_to_mpg":
+                results.append(f"{num} kpl = {num * factor:.2f} mpg")
+            elif conversion_type.lower() == "mpg_to_kpl":
+                results.append(f"{num} mpg = {num / factor:.2f} kpl")
+            else:
+                return ["❌ Invalid conversion type! Use 'kpl_to_mpg' or 'mpg_to_kpl'."]
+        except ValueError:
+            results.append(f"❌ Invalid input '{v}'. Must be a number.")
+    return results
+
+Print any number of arguments in reverse order
+
+You can accept any number of unnamed arguments using *args.
+
+def reverse_args(*args):
+    """
+    Print any number of arguments in reverse order.
+    """
+    for item in reversed(args):
+        print(item, end=" ")
+    
+Print any number of arguments in reverse order
+
+You can accept any number of unnamed arguments using *args.
+
+```python
+def reverse_args(*args):
+    """
+    Print any number of arguments in reverse order.
+    """
+    for item in reversed(args):
+        print(item, end=" ")
+    print()
+
+# Example usage
+reverse_args(1, 2, 3, 4, "hello")
+# Output: hello 4 3 2 1
+
+#Effect of global keyword on variable x
+```Python
+x = 5
+
+def funct_1():
+    x = 3   # creates a local variable, does NOT affect global x
+
+def funct_2():
+    global x
+    x = 2   # modifies the global x
+
+# Before
+print("Initially:", x)  # 5
+
+funct_1()
+print("After funct_1:", x)  # 5 → unchanged
+
+funct_2()
+print("After funct_2:", x)  # 2 → changed globally
+
+
+🔹 Explanation:
+
+funct_1 creates a local variable x, so global x remains 5.
+
+funct_2 uses global x, so it updates global x to 2.
