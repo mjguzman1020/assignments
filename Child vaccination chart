@@ -61,3 +61,4 @@ print("\n📋 All Patient Records:")
 for rec_no, details in patients.items():
     print(f"Record {rec_no}: {details}")
 ```
+https://youtube.com/shorts/MrbLkhCBokM?si=NbOYP9RhMxjiDNmV
