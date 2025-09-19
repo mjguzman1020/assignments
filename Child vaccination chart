@@ -1,1 +1,63 @@
+# ----------------------------------------
+# Patient Vaccine Record System
+# ----------------------------------------
+# This program stores patient data in a nested dictionary.
+# Each patient is assigned a unique record number.
+# ----------------------------------------
 
+# Main dictionary to store all patient records
+patients = {}
+
+# Counter to generate unique record numbers
+record_number = 1
+
+
+def insert():
+    """
+    Function: insert()
+    -------------------
+    Takes user inputs (first name, last name, vaccine month)
+    and stores them in the global 'patients' dictionary
+    under a unique record number.
+    """
+
+    global record_number  # Ensure we use and update the global counter
+
+    # Step 1: Get inputs from the user
+    first_name = input("Enter patient's first name: ")
+    last_name = input("Enter patient's last name: ")
+    birth_month = int(input("Enter the birth month of vaccination (1-12): "))
+
+    # Step 2: Create a nested dictionary for this patient
+    patient_data = {
+        "first_name": first_name,
+        "last_name": last_name,
+        "vaccine_month": birth_month
+    }
+
+    # Step 3: Add the patient record under a unique record number
+    patients[record_number] = patient_data
+
+    # Step 4: Confirmation message
+```python
+    print(f"\n✅ Patient record {record_number} added successfully!\n")
+```
+
+    # Step 5: Increment the record number for the next patient
+    record_number += 1
+
+
+# ----------------------------------------
+# Demonstration of tasks
+# ----------------------------------------
+
+# Insert two patient records (task: Insert Function)
+insert()  # First record
+insert()  # Second record
+
+# Verification: Display all records (task: Verification)
+```python
+print("\n📋 All Patient Records:")
+for rec_no, details in patients.items():
+    print(f"Record {rec_no}: {details}")
+```
