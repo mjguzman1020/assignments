@@ -47,3 +47,86 @@ while i < len(a):
 ```python
 print("Final dictionary:", res)
 ```
+1b.
+# Empty dictionary for user inputs
+my_user_dict = {}
+
+while True:
+    ssn = input("Enter SSN: ")
+    name = input("Enter Name: ")
+    
+    # Add input values to dictionary
+    my_user_dict["SSN"] = ssn
+    my_user_dict["Name"] = name
+    
+    choice = input("Do you want to continue (Y/N): ")
+    if choice.upper() == "N":
+        break
+```python
+print("User Dictionary:")
+print(my_user_dict)
+```
+
+1c.
+# Starting list of tuples
+a = [
+    ('Name', 'Sarah Connor'),
+    ('Date of birth', '1 Jan 1980'),
+    ('Address', '1000 Black Mountain Drive'),
+    ('Zip', 92126),
+    ('Name', 'Jim Hawkins')  # Duplicate key
+]
+
+# Empty dictionary
+res = {}
+
+for pair in a:
+    key = pair[0]
+    value = pair[1]
+    
+    # Check if key already exists
+    if key in res:
+        print("Duplicate key found:", key)
+        new_key = input("Please enter a new key for value '{}': ".format(value))
+        res[new_key] = value
+    else:
+        res[key] = value
+```python
+
+print("Final dictionary:")
+print(res)
+```
+1d.
+# Example list (could be anything)
+my_list = [("a", 1), ("b", 2), ("c", 3), ("d", 4)]
+
+# Empty dictionary
+dict_from_list = {}
+
+for item in my_list:
+    dict_from_list[item[0]] = item[1]
+```python
+print("Converted dictionary:")
+print(dict_from_list)
+```
+1e.
+text = """The tiger (Panthera tigris) is a large cat and a member of the genus Panthera native to Asia. 
+It has a powerful, muscular body with a large head and paws, a long tail and orange fur with black, 
+mostly vertical stripes. It is traditionally classified into nine recent subspecies, though some 
+recognise only two subspecies, mainland Asian tigers and the island tigers of the Sunda Islands."""
+
+# Convert text into lowercase to avoid case issues
+words = text.replace("(", "").replace(")", "").replace(",", "").replace(".", "").split()
+
+word_count = {}
+
+for word in words:
+    if word in word_count:
+        word_count[word] += 1
+    else:
+        word_count[word] = 1
+```python
+print("Word frequency dictionary:")
+print(word_count)
+```
+
