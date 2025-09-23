@@ -1,64 +1,39 @@
-# ----------------------------------------
-# Patient Vaccine Record System
-# ----------------------------------------
-# This program stores patient data in a nested dictionary.
-# Each patient is assigned a unique record number.
-# ----------------------------------------
+# Lab 4: Child Vaccination Chart
 
-# Main dictionary to store all patient records
-patients = {}
-
-# Counter to generate unique record numbers
-record_number = 1
-
-
-def insert():
-    """
-    Function: insert()
-    -------------------
-    Takes user inputs (first name, last name, vaccine month)
-    and stores them in the global 'patients' dictionary
-    under a unique record number.
-    """
-
-    global record_number  # Ensure we use and update the global counter
-
-    # Step 1: Get inputs from the user
-    first_name = input("Enter patient's first name: ")
-    last_name = input("Enter patient's last name: ")
-    birth_month = int(input("Enter the birth month of vaccination (1-12): "))
-
-    # Step 2: Create a nested dictionary for this patient
-    patient_data = {
-        "first_name": first_name,
-        "last_name": last_name,
-        "vaccine_month": birth_month
+# Main dictionary to hold patient data
+patient = {}
+```
+# Function to insert new patient
+def insert(first_name, last_name, birth_month):
+    # Create a unique record number
+    record_number = len(patient) + 1
+    
+    # Create a nested dictionary for the patient
+    patient[record_number] = {
+        "First Name": first_name.title(),
+        "Last Name": last_name.title(),
+        "Vaccine Month": birth_month
     }
 
-    # Step 3: Add the patient record under a unique record number
-    patients[record_number] = patient_data
+# ---------------- Demonstration ----------------
+print("=== Child Vaccination Chart ===")
 
-    # Step 4: Confirmation message
-```python
-    print(f"\n✅ Patient record {record_number} added successfully!\n")
+while True:
+    # Get user input
+    f_name = input("Enter patient's first name: ")
+    l_name = input("Enter patient's last name: ")
+    b_month = int(input("Enter vaccine month (1-12): "))
+
+    # Insert into dictionary
+    insert(f_name, l_name, b_month)
+
+    # Show dictionary after insertion
+    print("\nCurrent Records:", patient)
+
+    # Ask if user wants to continue
+    choice = input("Add another patient? (Y/N): ").strip().upper()
+    if choice != "Y":
+        break
+
+print("\nFinal Patient Records:", patient)
 ```
-
-    # Step 5: Increment the record number for the next patient
-    record_number += 1
-
-
-# ----------------------------------------
-# Demonstration of tasks
-# ----------------------------------------
-
-# Insert two patient records (task: Insert Function)
-insert()  # First record
-insert()  # Second record
-
-# Verification: Display all records (task: Verification)
-```python
-print("\n📋 All Patient Records:")
-for rec_no, details in patients.items():
-    print(f"Record {rec_no}: {details}")
-```
-https://youtube.com/shorts/MrbLkhCBokM?si=NbOYP9RhMxjiDNmV
