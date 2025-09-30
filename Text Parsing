@@ -1,0 +1,96 @@
+ # Text Parsing Program
+
+This Python script performs several text parsing tasks including:  
+- Word & character count (using a **list**)  
+- Word frequency (using both a **list** and a **dictionary**)  
+- Regex extraction of emails & phone numbers  
+- Email username processing (convert to `@hotmail.com`)  
+
+---
+
+# Python Code
+
+```python
+import re
+from collections import Counter
+
+# ---------------------------
+# Input text (replace with your own story if needed)
+# ---------------------------
+story = """
+Once upon a time, in a quiet town, lived a girl named Ana.
+You can reach her at ana.smith@example.com or call (123)-456-7890.
+Her friend John uses john_doe@gmail.com and phone 987-654-3210.
+"""
+
+# ---------------------------
+# 1. Word and Character Count (Using a List)
+# ---------------------------
+words_list = story.split()         # split into words
+word_count = len(words_list)       # total words
+char_count = len(story)            # total characters
+
+print("---- Using List ----")
+print("Word Count:", word_count)
+print("Character Count:", char_count)
+
+# Word frequencies using Counter
+word_freq_list = Counter(words_list)
+
+print("Word Frequencies (List Version):")
+for word, freq in word_freq_list.items():
+    print(word, ":", freq)
+
+# ---------------------------
+# 2. Repeat with a Dictionary
+# ---------------------------
+word_freq_dict = {}
+for word in words_list:
+    word_freq_dict[word] = word_freq_dict.get(word, 0) + 1
+
+print("\n---- Using Dictionary ----")
+print("Word Frequencies (Dictionary Version):")
+for word, freq in word_freq_dict.items():
+    print(word, ":", freq)
+
+# ---------------------------
+# 3. Regex Extraction (Phone Numbers & Emails)
+# ---------------------------
+phone_pattern = r'\(?\d{3}\)?[-\s]?\d{3}[-\s]?\d{4}'
+email_pattern = r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
+
+phones = re.findall(phone_pattern, story)
+emails = re.findall(email_pattern, story)
+
+print("\n---- Regex Extraction ----")
+print("Phone Numbers:", phones)
+print("Email Addresses:", emails)
+
+# Save into a single list
+contact_list = phones + emails
+print("Combined Contact List:", contact_list)
+
+# ---------------------------
+# 4. Email Username Processing
+# ---------------------------
+usernames = [email.split("@")[0] for email in emails]
+hotmail_addresses = [username + "@hotmail.com" for username in usernames]
+
+print("\n---- Email Processing ----")
+print("Usernames:", usernames)
+print("New Hotmail Addresses:", hotmail_addresses)
+📊 Histogram (Optional)
+You can also generate a word frequency histogram with matplotlib:
+
+python
+Copy code
+import matplotlib.pyplot as plt
+
+# Plot histogram
+plt.bar(word_freq_list.keys(), word_freq_list.values())
+plt.xticks(rotation=45, ha="right")
+plt.title("Word Frequency Histogram")
+plt.xlabel("Words")
+plt.ylabel("Frequency")
+plt.tight_layout()
+plt.show()
