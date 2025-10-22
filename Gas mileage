@@ -1,0 +1,57 @@
+Python
+"""
+Car Gas Mileage Calculator
+--------------------------
+A simple Python Tkinter program that calculates a car’s gas mileage (MPG).
+
+Author: Your Name
+Date: 2025-10-22
+
+Description:
+    The user enters:
+        - The number of gallons of gas the car holds.
+        - The number of miles the car can drive on a full tank.
+    When the "Calculate MPG" button is clicked, the program calculates and displays:
+
+        MPG = miles / gallons
+"""
+
+import tkinter as tk
+
+
+def calculate_mpg():
+    """Calculate and display miles per gallon."""
+    try:
+        gallons = float(entry_gallons.get())
+        miles = float(entry_miles.get())
+        mpg = miles / gallons
+        label_result.config(text=f"MPG: {mpg:.2f}")
+    except ValueError:
+        label_result.config(text="Please enter valid numbers.")
+
+
+# Create main window
+window = tk.Tk()
+window.title("Gas Mileage Calculator")
+window.geometry("300x180")
+
+# Input for gallons
+tk.Label(window, text="Gallons of gas:").pack(pady=5)
+entry_gallons = tk.Entry(window)
+entry_gallons.pack()
+
+# Input for miles
+tk.Label(window, text="Miles on full tank:").pack(pady=5)
+entry_miles = tk.Entry(window)
+entry_miles.pack()
+
+# Calculate button
+tk.Button(window, text="Calculate MPG", command=calculate_mpg).pack(pady=10)
+
+# Result label
+label_result = tk.Label(window, text="MPG: ")
+label_result.pack()
+
+# Run the app
+if __name__ == "__main__":
+    window.mainloop()
