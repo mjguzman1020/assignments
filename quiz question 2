@@ -1,0 +1,76 @@
+python
+# tally_scores.py
+"""
+Reads a file containing student names and test scores, and prints
+each student's record followed by their average score.
+
+Example file (records.txt):
+    John 71 83 94
+    Sally 94 85
+    Fred 90 95 82 85
+
+Expected output:
+    John: 71 83 94
+    average = 82.66666666666667
+    Sally: 94 85
+    average = 89.5
+    Fred: 90 95 82 85
+    average = 88.0
+"""
+
+def tally_scores(filename):
+    """Reads a student records file and prints each name, scores, and average."""
+    try:
+        with open(filename, 'r', encoding='utf-8') as file:
+            for line in file:
+                # Clean up whitespace and skip blank lines
+                line = line.strip()
+                if not line:
+                    continue
+
+                parts = line.split()
+                name = parts[0]
+                scores = [int(score) for score in parts[1:]]
+
+                # Print student name and scores
+                print(f"{name}: {' '.join(map(str, scores))}")
+
+                # Calculate and print average
+                avg = sum(scores) / len(scores)
+                print(f"average = {avg}")
+    except FileNotFoundError:
+        print(f"Error: File '{filename}' not found.")
+
+
+# Allow running from the command line
+if __name__ == "__main__":
+    import sys
+
+    if len(sys.argv) != 2:
+        print("Usage: python tally_scores.py <filename>")
+    else:
+        tally_scores(sys.argv[1])
+🧾 Usage
+Save this code as tally_scores.py
+
+Make a file called records.txt containing:
+
+nginx
+Copy code
+John 71 83 94
+Sally 94 85
+Fred 90 95 82 85
+Run in terminal:
+
+bash
+Copy code
+python tally_scores.py records.txt
+✅ Output
+makefile
+Copy code
+John: 71 83 94
+average = 82.66666666666667
+Sally: 94 85
+average = 89.5
+Fred: 90 95 82 85
+average = 88.0
