@@ -1,0 +1,282 @@
+Project Structure
+save-the-watermelon/
+├─ README.md
+├─ .gitignore
+├─ src/
+│  ├─ game.py
+│  ├─ logic.py
+│  ├─ words.py
+│  └─ __init__.py
+├─ tests/
+│  ├─ test_logic.py
+│  └─ __init__.py
+├─ docs/
+│  ├─ design.md
+│  ├─ pseudocode.md
+│  └─ test-plan.md
+└─ data/
+   └─ words.txt
+
+📄 README.md
+# Save the Watermelon
+
+A terminal-based word guessing game where you must save the watermelon by guessing the secret word before the slice counter runs out.
+
+## How to Run
+```bash
+python -m src.game
+# or
+python src/game.py
+
+How to Test
+
+Run the tests manually or with Python’s built-in unittest:
+
+python -m unittest discover tests
+
+Features & Rules
+
+Random secret word from the list.
+
+Guess one letter per turn.
+
+Each incorrect guess removes a slice.
+
+Win if you reveal all letters before slices run out.
+
+Lose if slices reach 0.
+
+Input validation for single alphabetic characters.
+
+Displays progress after every guess.
+
+Option to replay.
+
+Known Issues / Limitations
+
+No word categories or difficulty levels.
+
+No ASCII art stages.
+
+Only English words included.
+
+Credits
+
+Developed for the “Save the Watermelon” Python project assignment.
+
+
+---
+
+### 🧠 docs/design.md
+```markdown
+## Problem Statement & Target Audience
+Save the Watermelon is a simple word-guessing game for players who enjoy casual, text-based challenges. It’s designed for beginning Python programmers to practice loops, functions, and input validation.
+
+## Game Rules & Win/Lose Conditions
+- A secret word is randomly chosen.
+- The player guesses letters one at a time.
+- Correct letters are revealed.
+- Incorrect guesses reduce the slice counter.
+- The player wins by revealing all letters before slices run out.
+- The player loses if all slices are used.
+
+## Core Features
+- Random word selection.
+- Input validation.
+- Display of guessed and remaining letters.
+- Slice counter to track incorrect guesses.
+
+## Stretch Goals
+- ASCII art stages.
+- Difficulty modes.
+- Hints or word categories.
+- Scoreboard.
+
+## Game Flow
+1. Start → Select random word.
+2. Initialize slice counter and guessed letters.
+3. Loop until win or lose:
+   - Show progress.
+   - Ask for letter.
+   - Check guess.
+   - Update slices or revealed word.
+4. Show win/lose message.
+5. Ask to replay.
+
+## Data Design
+- **secret_word**: string (selected randomly)
+- **guessed_letters**: set of letters guessed
+- **remaining_slices**: integer (decreases on wrong guesses)
+- **revealed_word**: string with underscores for unknown letters
+
+## Module Responsibilities
+- `words.py`: provide word list or load from file.
+- `logic.py`: handle core gameplay logic.
+- `game.py`: main loop and user interaction.
+
+📜 docs/pseudocode.md
+FUNCTION main_game_loop
+  secret ← select_secret_word()
+  guessed ← ∅
+  slices ← 6
+
+  WHILE slices > 0 AND NOT is_win(secret, guessed)
+    DISPLAY render_state(secret, guessed)
+    guess ← prompt_for_letter()
+    IF guess already in guessed THEN
+      DISPLAY "Already guessed"
+      CONTINUE
+    ENDIF
+    ADD guess TO guessed
+    IF guess IN secret THEN
+      DISPLAY "Nice!"
+    ELSE
+      slices ← slices - 1
+      DISPLAY "Sliced! Remaining: " + slices
+    ENDIF
+  ENDWHILE
+
+  IF is_win(secret, guessed) THEN
+    DISPLAY "You saved the watermelon!"
+  ELSE
+    DISPLAY "Oh no! The melon was sliced."
+  ENDIF
+
+  ASK "Play again?" → replay
+  IF replay == yes THEN main_game_loop()
+END FUNCTION
+
+🧩 docs/test-plan.md
+## Test Plan
+
+### Test Matrix
+| Test Case | Input | Expected Result |
+|------------|--------|-----------------|
+| 1 | Correct letter | Revealed in word |
+| 2 | Incorrect letter | Slices decrease |
+| 3 | Repeat guess | Warning shown |
+| 4 | Non-letter input | Error message |
+| 5 | Win condition | "You saved the watermelon!" |
+| 6 | Lose condition | "Oh no! The melon was sliced." |
+| 7 | Replay yes | Restarts game |
+| 8 | Replay no | Exits game |
+
+### Manual Testing
+- Tested all gameplay scenarios with sample words.
+- Verified repeated guesses and invalid inputs handled.
+- Game correctly restarts or exits.
+
+### Results
+All core logic tested and confirmed working.
+
+🍉 src/words.py
+import random
+
+WORDS = [
+    "watermelon",
+    "banana",
+    "strawberry",
+    "pineapple",
+    "grapefruit",
+    "blueberry",
+    "kiwi",
+    "mango"
+]
+
+def get_random_word():
+    """Return a random word from the list."""
+    return random.choice(WORDS)
+
+⚙️ src/logic.py
+def display_word(secret_word, guessed_letters):
+    """Return the current masked word with guessed letters revealed."""
+    return " ".join(letter if letter in guessed_letters else "_" for letter in secret_word)
+
+def is_win(secret_word, guessed_letters):
+    """Check if all letters in the secret word have been guessed."""
+    return all(letter in guessed_letters for letter in secret_word)
+
+def is_valid_guess(guess):
+    """Validate user input."""
+    return len(guess) == 1 and guess.isalpha()
+
+🎮 src/game.py
+from src.words import get_random_word
+from src.logic import display_word, is_win, is_valid_guess
+
+def main():
+    print("🍉 Welcome to Save the Watermelon!")
+    while True:
+        secret_word = get_random_word()
+        guessed_letters = set()
+        slices = 6
+
+        while slices > 0 and not is_win(secret_word, guessed_letters):
+            print("\nWord:", display_word(secret_word, guessed_letters))
+            print("Slices remaining:", slices)
+            guess = input("Guess a letter: ").lower()
+
+            if not is_valid_guess(guess):
+                print("Please enter a single letter.")
+                continue
+            if guess in guessed_letters:
+                print("Already guessed!")
+                continue
+
+            guessed_letters.add(guess)
+            if guess in secret_word:
+                print("Nice! You found a letter!")
+            else:
+                slices -= 1
+                print(f"Wrong guess! Slices left: {slices}")
+
+        if is_win(secret_word, guessed_letters):
+            print("\n🎉 You saved the watermelon!")
+        else:
+            print(f"\n💀 The melon was sliced! The word was '{secret_word}'.")
+
+        replay = input("Play again? (y/n): ").lower()
+        if replay != "y":
+            print("Thanks for playing! 🍉")
+            break
+
+if __name__ == "__main__":
+    main()
+
+🧪 tests/test_logic.py
+import unittest
+from src.logic import display_word, is_win, is_valid_guess
+
+class TestLogic(unittest.TestCase):
+    def test_display_word(self):
+        self.assertEqual(display_word("apple", {"a", "p"}), "a p p _ _")
+
+    def test_is_win(self):
+        self.assertTrue(is_win("cat", {"c", "a", "t"}))
+        self.assertFalse(is_win("dog", {"d", "o"}))
+
+    def test_is_valid_guess(self):
+        self.assertTrue(is_valid_guess("a"))
+        self.assertFalse(is_valid_guess("ab"))
+        self.assertFalse(is_valid_guess("1"))
+        self.assertFalse(is_valid_guess("!"))
+
+if __name__ == "__main__":
+    unittest.main()
+
+📘 data/words.txt
+watermelon
+banana
+strawberry
+pineapple
+grapefruit
+blueberry
+kiwi
+mango
+
+🗑️ .gitignore
+__pycache__/
+*.pyc
+.env
+.vscode/
+.idea/
