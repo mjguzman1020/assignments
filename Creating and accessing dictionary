@@ -1,122 +1,118 @@
-# Example dictionary with 10 elements
-```python
-my_dict = {
-    "A": 1,
-    "B": 2,
-    "C": 3,
-    "D": 4,
-    "E": 5,
-    "F": 6,
-    "G": 7,
-    "H": 8,
-    "I": 9,
-    "J": 10
-}
-```python
-print("Dictionary with 10 elements:", my_dict)
-```
+python
+# ------------------------------------------------------------
+# 1a. Dictionary creation from list of tuples with validation
+# ------------------------------------------------------------
 
-# Initial list of tuples
 a = [("a", 1), ("b", 2), ("c", 3), ("b", 5), ("d",), ("e", 6)]
-
-res = {}  # Final dictionary
+res = {}
 
 i = 0
 while i < len(a):
     pair = a[i]
 
-    # Check if tuple has exactly 2 items (valid key-value pair)
+    # Check if tuple has exactly 2 items
     if len(pair) != 2:
         print("Invalid pair:", pair)
         key = input("Enter a valid key: ")
         value = input("Enter a valid value: ")
         res[key] = value
-
     else:
         key, value = pair
 
-        # Check for key duplication
+        # Check for duplicate key
         if key in res:
             print("Duplicate key found:", key)
-            new_key = input("Enter a new key for value " + str(value) + ": ")
+            new_key = input(f"Enter a new key for value {value}: ")
             res[new_key] = value
         else:
             res[key] = value
 
     i += 1
-```python
-print("Final dictionary:", res)
-```
-1b.
-# Empty dictionary for user inputs
+
+print("\nFinal dictionary for 1a:")
+print(res)
+
+
+# ------------------------------------------------------------
+# 1b. Build dictionary using user inputs
+# ------------------------------------------------------------
+
 my_user_dict = {}
 
 while True:
-    ssn = input("Enter SSN: ")
+    ssn = input("\nEnter SSN: ")
     name = input("Enter Name: ")
-    
-    # Add input values to dictionary
-    my_user_dict["SSN"] = ssn
-    my_user_dict["Name"] = name
-    
+
+    # Store data in dictionary (SSN → Name)
+    my_user_dict[ssn] = name
+
     choice = input("Do you want to continue (Y/N): ")
     if choice.upper() == "N":
         break
-```python
-print("User Dictionary:")
-print(my_user_dict)
-```
 
-1c.
-# Starting list of tuples
+print("\nUser Dictionary (1b):")
+print(my_user_dict)
+
+
+# ------------------------------------------------------------
+# 1c. Handling duplicate keys in tuple list
+# ------------------------------------------------------------
+
 a = [
     ('Name', 'Sarah Connor'),
     ('Date of birth', '1 Jan 1980'),
     ('Address', '1000 Black Mountain Drive'),
     ('Zip', 92126),
-    ('Name', 'Jim Hawkins')  # Duplicate key
+    ('Name', 'Jim Hawkins')
 ]
 
-# Empty dictionary
 res = {}
 
-for pair in a:
-    key = pair[0]
-    value = pair[1]
-    
-    # Check if key already exists
+for key, value in a:
     if key in res:
-        print("Duplicate key found:", key)
-        new_key = input("Please enter a new key for value '{}': ".format(value))
+        print("\nDuplicate key found:", key)
+        new_key = input(f"Please enter a new key for value '{value}': ")
         res[new_key] = value
     else:
         res[key] = value
-```python
 
-print("Final dictionary:")
+print("\nFinal dictionary for 1c:")
 print(res)
-```
-1d.
-# Example list (could be anything)
-my_list = [("a", 1), ("b", 2), ("c", 3), ("d", 4)]
 
-# Empty dictionary
+
+# ------------------------------------------------------------
+# 1d. Convert list of tuples into dictionary
+# ------------------------------------------------------------
+
+my_list = [("a", 1), ("b", 2), ("c", 3), ("d", 4)]
 dict_from_list = {}
 
-for item in my_list:
-    dict_from_list[item[0]] = item[1]
-```python
-print("Converted dictionary:")
+for key, value in my_list:
+    dict_from_list[key] = value
+
+print("\nConverted dictionary for 1d:")
 print(dict_from_list)
-```
-1e.
+
+
+# ------------------------------------------------------------
+# 1e. Word frequency dictionary
+# ------------------------------------------------------------
+
 text = """The tiger (Panthera tigris) is a large cat and a member of the genus Panthera native to Asia. 
 It has a powerful, muscular body with a large head and paws, a long tail and orange fur with black, 
 mostly vertical stripes. It is traditionally classified into nine recent subspecies, though some 
 recognise only two subspecies, mainland Asian tigers and the island tigers of the Sunda Islands."""
 
-# Convert text into lowercase to avoid case issues
-words = text.replace("(", "").replace(")", "").replace(",", "").replace(".", "").split()
+# Lowercase and remove punctuation
+clean_text = (
+    text.lower()
+        .replace("(", "")
+        .replace(")", "")
+        .replace(",", "")
+        .replace(".", "")
+)
+
+words = clean_text.split()
 
 word_count = {}
 
@@ -125,8 +121,7 @@ for word in words:
         word_count[word] += 1
     else:
         word_count[word] = 1
-```python
-print("Word frequency dictionary:")
+
+print("\nWord frequency dictionary for 1e:")
 print(word_count)
-```
 
