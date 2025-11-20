@@ -1,6 +1,12 @@
 python
+"""
+Assignment: Dictionary Problems (1a–1e)
+Clean, readable, and formatted for GitHub.
+"""
+
+
 # ------------------------------------------------------------
-# 1a. Dictionary creation from list of tuples with validation
+# 1a. Create dictionary from list of tuples with validation
 # ------------------------------------------------------------
 
 a = [("a", 1), ("b", 2), ("c", 3), ("b", 5), ("d",), ("e", 6)]
@@ -10,7 +16,7 @@ i = 0
 while i < len(a):
     pair = a[i]
 
-    # Check if tuple has exactly 2 items
+    # Ensure tuple contains exactly 2 values
     if len(pair) != 2:
         print("Invalid pair:", pair)
         key = input("Enter a valid key: ")
@@ -34,7 +40,7 @@ print(res)
 
 
 # ------------------------------------------------------------
-# 1b. Build dictionary using user inputs
+# 1b. Build dictionary based on user input (SSN and Name)
 # ------------------------------------------------------------
 
 my_user_dict = {}
@@ -43,7 +49,7 @@ while True:
     ssn = input("\nEnter SSN: ")
     name = input("Enter Name: ")
 
-    # Store data in dictionary (SSN → Name)
+    # Store the pair using SSN as the unique key
     my_user_dict[ssn] = name
 
     choice = input("Do you want to continue (Y/N): ")
@@ -55,7 +61,7 @@ print(my_user_dict)
 
 
 # ------------------------------------------------------------
-# 1c. Handling duplicate keys in tuple list
+# 1c. Handle duplicate keys from a list of tuples
 # ------------------------------------------------------------
 
 a = [
@@ -63,7 +69,7 @@ a = [
     ('Date of birth', '1 Jan 1980'),
     ('Address', '1000 Black Mountain Drive'),
     ('Zip', 92126),
-    ('Name', 'Jim Hawkins')
+    ('Name', 'Jim Hawkins')  # Duplicate
 ]
 
 res = {}
@@ -81,7 +87,7 @@ print(res)
 
 
 # ------------------------------------------------------------
-# 1d. Convert list of tuples into dictionary
+# 1d. Convert a list of tuples directly into a dictionary
 # ------------------------------------------------------------
 
 my_list = [("a", 1), ("b", 2), ("c", 3), ("d", 4)]
@@ -103,7 +109,7 @@ It has a powerful, muscular body with a large head and paws, a long tail and ora
 mostly vertical stripes. It is traditionally classified into nine recent subspecies, though some 
 recognise only two subspecies, mainland Asian tigers and the island tigers of the Sunda Islands."""
 
-# Lowercase and remove punctuation
+# Standardize text and remove punctuation
 clean_text = (
     text.lower()
         .replace("(", "")
@@ -113,7 +119,6 @@ clean_text = (
 )
 
 words = clean_text.split()
-
 word_count = {}
 
 for word in words:
@@ -124,4 +129,3 @@ for word in words:
 
 print("\nWord frequency dictionary for 1e:")
 print(word_count)
-
